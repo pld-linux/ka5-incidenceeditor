@@ -1,37 +1,38 @@
-%define		kdeappsver	18.12.0
+%define		kdeappsver	18.12.1
 %define		qtver		5.9.0
 %define		kaname		incidenceeditor
 Summary:	Incidence editor
 Name:		ka5-%{kaname}
-Version:	18.12.0
+Version:	18.12.1
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	e9fdda4650d2a6c4de728100dd1b7967
+# Source0-md5:	b93f2db9904e81aae0d5cebcd74c6ffd
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel >= 5.11.1
 BuildRequires:	Qt5Widgets-devel
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	gettext-devel
-BuildRequires:	ka5-akonadi-devel >= 18.12.0
-BuildRequires:	ka5-akonadi-mime-devel >= 18.12.0
-BuildRequires:	ka5-calendarsupport-devel >= 18.12.0
-BuildRequires:	ka5-eventviews-devel >= 18.12.0
-BuildRequires:	ka5-kcalcore-devel >= 18.12.0
-BuildRequires:	ka5-kcalutils-devel >= 18.12.0
-BuildRequires:	ka5-kdepim-apps-libs-devel >= 18.12.0
-BuildRequires:	ka5-kldap-devel >= 18.12.0
-BuildRequires:	ka5-kmailtransport-devel >= 18.12.0
-BuildRequires:	ka5-kmime-devel >= 18.12.0
-BuildRequires:	ka5-libkdepim-devel >= 18.12.0
+BuildRequires:	ka5-akonadi-devel >= %{kdeappsver}
+BuildRequires:	ka5-akonadi-mime-devel >= %{kdeappsver}
+BuildRequires:	ka5-calendarsupport-devel >= %{kdeappsver}
+BuildRequires:	ka5-eventviews-devel >= %{kdeappsver}
+BuildRequires:	ka5-kcalcore-devel >= %{kdeappsver}
+BuildRequires:	ka5-kcalutils-devel >= %{kdeappsver}
+BuildRequires:	ka5-kdepim-apps-libs-devel >= %{kdeappsver}
+BuildRequires:	ka5-kldap-devel >= %{kdeappsver}
+BuildRequires:	ka5-kmailtransport-devel >= %{kdeappsver}
+BuildRequires:	ka5-kmime-devel >= %{kdeappsver}
+BuildRequires:	ka5-libkdepim-devel >= %{kdeappsver}
 BuildRequires:	kdiagram-devel >= 1.4.0
 BuildRequires:	kf5-extra-cmake-modules >= 5.53.0
 BuildRequires:	kf5-kcodecs-devel >= 5.51.0
 BuildRequires:	kf5-ki18n-devel >= 5.51.0
 BuildRequires:	kf5-kiconthemes-devel >= 5.51.0
 BuildRequires:	kf5-kio-devel >= 5.51.0
+BuildRequires:	ninja
 BuildRequires:	qt5-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
@@ -61,14 +62,14 @@ Pliki nagłówkowe dla programistów używających %{kaname}.
 install -d build
 cd build
 %cmake \
+	-G Ninja \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
 	..
-%{__make}
+%ninja_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} -C build install \
-	DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 %find_lang %{kaname} --all-name --with-kde
 
