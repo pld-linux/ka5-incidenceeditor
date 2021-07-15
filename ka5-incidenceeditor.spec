@@ -44,7 +44,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 This lib provides incidence editor.
 
 %description -l pl.UTF-8
-Ta biblioteka zawiera edytor rzeczy do zrobienia.
+Ta biblioteka zawiera edytor listy rzeczy do zrobienia.
 
 %package devel
 Summary:	Header files for %{kaname} development
