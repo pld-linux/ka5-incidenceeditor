@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	21.12.3
+%define		kdeappsver	22.04.0
 %define		kframever	5.56.0
 %define		qtver		5.9.0
 %define		kaname		incidenceeditor
 Summary:	Incidence editor
 Name:		ka5-%{kaname}
-Version:	21.12.3
+Version:	22.04.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	794c75436a1b692fb98f1207fd0df6c7
+# Source0-md5:	9608d54679eed59bd926b8144ce5becd
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel >= 5.11.1
@@ -94,7 +94,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{kaname}.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kincidenceeditor
 %ghost %{_libdir}/libKF5IncidenceEditor.so.5
 %attr(755,root,root) %{_libdir}/libKF5IncidenceEditor.so.*.*.*
 %{_datadir}/qlogging-categories5/incidenceeditor.categories
@@ -103,8 +102,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/KF5/IncidenceEditor
-%{_includedir}/KF5/incidenceeditor
-%{_includedir}/KF5/incidenceeditor_version.h
 %{_libdir}/cmake/KF5IncidenceEditor
 %{_libdir}/libKF5IncidenceEditor.so
 %{_libdir}/qt5/mkspecs/modules/qt_IncidenceEditor.pri
